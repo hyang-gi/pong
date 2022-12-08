@@ -3,6 +3,7 @@ body {
 }
 
 #wrapper {
+  background: beige;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -16,9 +17,10 @@ body {
 }
 
 #canvas {
-  width: 640px;
+  border: 4px dashed beige;
+  width: 840px;
   height: 480px;
-  background-color: #000000;
+  background-color: black;
   position: relative;
 }
 

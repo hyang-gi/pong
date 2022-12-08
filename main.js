@@ -1,7 +1,7 @@
 $(document).ready(function () {
   console.log("It works!");
 
-  let ballX = 300;
+  let ballX = 400;
   let ballY = 200;
 
   $("#ball").css("left", `${ballX}px`);
