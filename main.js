@@ -18,5 +18,6 @@ Set up a counter
 if ball goes behind paddles, decrease counter
 add event listener to paddles
 movement of one of the paddles is computer generated
+event listener for start game, reset game
 
 */
