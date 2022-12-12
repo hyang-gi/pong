@@ -48,7 +48,7 @@ class Paddle {
   }
 
   show() {
-    console.log("paddle show")
+    console.log("paddle show");
     $('#canvas').append(`<div id=${this.id}></div>`);
 
     $(`#${this.id}`).css('left', `${this.x}px`);
@@ -56,7 +56,7 @@ class Paddle {
     $(`#${this.id}`).css('width', `${this.paddleWidth}px`);
     $(`#${this.id}`).css('height', `${this.paddleHeight}px`);
     $(`#${this.id}`).css('background', `${this.colour}`);
-    $(`#${this.id}`).css('position', "relative");       // so this can be given any idea and it still works 
+    $(`#${this.id}`).css('position', "absolute");       // so this can be given any idea and it still works 
   }
 
 }
@@ -81,11 +81,11 @@ $(document).ready(function () {
   $("#ball").css("left", `${b.x}px`);
   $("#ball").css("top", `${b.y}px`);
 
-  const paddle1 = new Paddle(0, 0, 50, 100, getColour(), 'paddle1');
+  const paddle1 = new Paddle(10, 160, 25, 100, getColour(), 'paddle1');
   paddle1.show();
 //paddle1.move() for computer generated bat;
 
-  const paddle2 = new Paddle(790, 0, 50, 100, getColour(), 'paddle2');
+  const paddle2 = new Paddle(805, 160, 25, 100, getColour(), 'paddle2');
   paddle2.show();
 
 
