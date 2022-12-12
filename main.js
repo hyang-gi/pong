@@ -10,10 +10,11 @@ const b = {
 }
 
 function mover() {
-  console.log("mover function");
+  //console.log("mover function");
   b.x += b.dx * b.speed;
   b.y += b.dy * b.speed;
 
+  //to move the ball with new coordinates
   $("#ball").css({ left: `${b.x}px` });
   $("#ball").css({ top: `${b.y}px` });
 
@@ -34,22 +35,59 @@ function mover() {
 
 class Paddle {
 
-  constructor(x, y, size, speed, colour, index) {
+  constructor(x, y, paddleWidth, paddleHeight, colour, id) {
     this.x = x;
     this.y = y;
-    this.size = size;
-    this.speed = speed;
+    this.paddleWidth = paddleWidth;
+    this.paddleHeight = paddleHeight;
+    //  this.speed = speed;
     this.dx = 1;
     this.dy = 1;
     this.colour = colour; //use color gen for this
-    this.index = index;
+    this.id = id;
   }
+
+  show() {
+    console.log("paddle show")
+    $('#canvas').append(`<div id=${this.id}></div>`);
+
+    $(`#${this.id}`).css('left', `${this.x}px`);
+    $(`#${this.id}`).css('top', `${this.y}px`);
+    $(`#${this.id}`).css('width', `${this.paddleWidth}px`);
+    $(`#${this.id}`).css('height', `${this.paddleHeight}px`);
+    $(`#${this.id}`).css('background', `${this.colour}`);
+    $(`#${this.id}`).css('position', "relative");       // so this can be given any idea and it still works 
+  }
+
 }
+
+
+/* ------------------
+   helper functions
+   ------------------ */
+
+function randomHelper(min, max) {
+
+  return Math.floor(Math.random() * max) + min;
+}
+
+function getColour() {
+  return `rgb(${randomHelper(1, 255)}, ${randomHelper(1, 255)}, ${randomHelper(1, 255)})`;
+}
+
 
 $(document).ready(function () {
   console.log("It works!");
   $("#ball").css("left", `${b.x}px`);
   $("#ball").css("top", `${b.y}px`);
+
+  const paddle1 = new Paddle(0, 0, 50, 100, getColour(), 'paddle1');
+  paddle1.show();
+//paddle1.move() for computer generated bat;
+
+  const paddle2 = new Paddle(790, 0, 50, 100, getColour(), 'paddle2');
+  paddle2.show();
+
 
   $(document).on('click', 'button', function (event) {
     event.preventDefault();
@@ -69,5 +107,9 @@ if ball goes behind paddles, decrease counter
 add event listener to paddles
 movement of one of the paddles is computer generated
 event listener for start game, reset game
+
+#issues
+
+paddle position is not being set
 
 */
