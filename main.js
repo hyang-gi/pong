@@ -35,8 +35,7 @@ function mover() {
 
 }
 
-// canvas and ball is fixed entity of the game, hence no class is used for the same
-// class to create paddles
+// canvas and ball are fixed entities of the game, hence no class is used only for Paddles
 
 class Paddle {
 
@@ -67,7 +66,7 @@ class Paddle {
   move = () => {
     //console.log("paddle mover function");
     this.y += this.dy * 3;
-    //to move the ball with new coordinates
+    //to move the paddle with new coordinates
     $("#paddle1").css({ top: `${this.y}px` });
 
     if (this.y > 480 - this.paddleHeight || this.y < 0) {
@@ -77,7 +76,7 @@ class Paddle {
   };
 
   reset = () => {
-    console.log("Reset paddle");
+   // console.log("Reset paddle");
     cancelAnimationFrame(this.ani);
     this.setPaddlePosition();
   }
@@ -110,6 +109,10 @@ function randomHelper(min, max) {
 function getColour() {
   return `rgb(${randomHelper(155, 255)}, ${randomHelper(155, 255)}, ${randomHelper(1, 255)})`;
 }
+
+/* ------------------
+   reset/postioning functions
+   ------------------ */
 
 function setBallPosition() {
   $("#ball").css("left", `400px`);
