@@ -59,11 +59,11 @@ class Paddle {
     $(`#${this.id}`).css('position', "absolute");       // so this can be given any idea and it still works 
   }
 
-   move = () => {
+  move = () => {
     //console.log("paddle mover function");
     //the move is happening only once, it's not recognising y on loop
     console.log("PADDLE MOVER", this.y)
-    this.y += this.dy * 6;
+    this.y += this.dy * 3;
     //to move the ball with new coordinates
     $("#paddle1").css({ top: `${this.y}px` });
 
@@ -72,6 +72,17 @@ class Paddle {
     }
     window.requestAnimationFrame(this.move);
   };
+
+  handleKeydown(key) {
+    console.log(`${key} key is pressed`);
+    if (key === "ArrowUp" && !(this.y < 0)) {
+      this.y -= this.dy * 6;
+      $(`#${this.id}`).css({ top: `${this.y}px` });
+    } else if (key === "ArrowDown" && !(this.y > 480 - this.paddleHeight)) {
+      this.y += this.dy * 6;
+      $(`#${this.id}`).css({ top: `${this.y}px` });
+    }
+  }
 }
 
 
@@ -104,6 +115,11 @@ $(document).ready(function () {
     event.preventDefault();
     b.ani = window.requestAnimationFrame(mover);
     paddle1.move();
+  });
+
+  $(document).keydown(function (e) {
+    console.log(e.key);
+    paddle2.handleKeydown(e.key);
   });
 
 });
