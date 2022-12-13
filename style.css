@@ -38,3 +38,7 @@ body {
   border-radius: 50%;
   position: absolute;
 }
+
+.hidden {
+  display: none;
+}
