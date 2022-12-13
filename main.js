@@ -61,7 +61,6 @@ class Paddle {
 
   move = () => {
     //console.log("paddle mover function");
-    //the move is happening only once, it's not recognising y on loop
     console.log("PADDLE MOVER", this.y)
     this.y += this.dy * 3;
     //to move the ball with new coordinates
@@ -74,7 +73,7 @@ class Paddle {
   };
 
   handleKeydown(key) {
-    console.log(`${key} key is pressed`);
+  //  console.log(`${key} key is pressed`);
     if (key === "ArrowUp" && !(this.y < 0)) {
       this.y -= this.dy * 6;
       $(`#${this.id}`).css({ top: `${this.y}px` });
@@ -91,7 +90,6 @@ class Paddle {
    ------------------ */
 
 function randomHelper(min, max) {
-
   return Math.floor(Math.random() * max) + min;
 }
 
@@ -118,7 +116,6 @@ $(document).ready(function () {
   });
 
   $(document).keydown(function (e) {
-    console.log(e.key);
     paddle2.handleKeydown(e.key);
   });
 
