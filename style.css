@@ -24,6 +24,13 @@ body {
   position: relative;
 }
 
+#net {
+  width: 0.5px;
+  height: 480px;
+  background-color: beige;
+  position: absolute;
+}
+
 #ball {
   width: 40px;
   height: 40px;

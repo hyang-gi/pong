@@ -9,6 +9,11 @@ const ball = {
   ani: {}
 }
 
+const net = {
+  x: 420,
+  y: 0,
+}
+
 function mover() {
   //console.log("mover function");
   ball.x += ball.dx * ball.speed;
@@ -101,6 +106,9 @@ $(document).ready(function () {
   console.log("It works!");
   $("#ball").css("left", `${ball.x}px`);
   $("#ball").css("top", `${ball.y}px`);
+
+  $("#net").css("left", `${net.x}px`);
+  $("#net").css("top", `${net.y}px`);
 
   const paddle1 = new Paddle(10, 160, 25, 100, getColour(), 'paddle1');
   paddle1.show();
