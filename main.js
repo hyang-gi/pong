@@ -55,7 +55,7 @@ class Paddle {
     $(`#${this.id}`).css('width', `${this.paddleWidth}px`);
     $(`#${this.id}`).css('height', `${this.paddleHeight}px`);
     $(`#${this.id}`).css('background', `${this.colour}`);
-    $(`#${this.id}`).css('position', "absolute"); 
+    $(`#${this.id}`).css('position', "absolute");
   }
 
   move = () => {
@@ -72,7 +72,7 @@ class Paddle {
   };
 
   handleKeydown(key) {
-  //  console.log(`${key} key is pressed`);
+    //  console.log(`${key} key is pressed`);
     if (key === "ArrowUp" && !(this.y < 0)) {
       this.y -= this.dy * 6;
       $(`#${this.id}`).css({ top: `${this.y}px` });
