@@ -85,7 +85,7 @@ function randomHelper(min, max) {
 }
 
 function getColour() {
-  return `rgb(${randomHelper(1, 255)}, ${randomHelper(1, 255)}, ${randomHelper(1, 255)})`;
+  return `rgb(${randomHelper(155, 255)}, ${randomHelper(155, 255)}, ${randomHelper(1, 255)})`;
 }
 
 
