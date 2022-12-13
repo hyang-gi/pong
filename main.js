@@ -48,7 +48,7 @@ class Paddle {
   }
 
   show() {
-    console.log("paddle show");
+    // console.log("paddle show");
     $('#canvas').append(`<div id=${this.id}></div>`);
 
     $(`#${this.id}`).css('left', `${this.x}px`);
@@ -59,6 +59,19 @@ class Paddle {
     $(`#${this.id}`).css('position', "absolute");       // so this can be given any idea and it still works 
   }
 
+  move() {
+    //console.log("paddle mover function");
+    //the move is happening only once, it's not recognising y on loop
+    console.log("PADDLE MOVER", this.y)
+    this.y += this.dy * 6;
+    //to move the ball with new coordinates
+    $("#paddle1").css({ top: `${this.y}px` });
+
+    if (this.y > 480 - this.paddleHeight || this.y < 0) {
+      this.dy *= -1;
+    }
+    window.requestAnimationFrame(this.move);
+  }
 }
 
 
@@ -83,15 +96,14 @@ $(document).ready(function () {
 
   const paddle1 = new Paddle(10, 160, 25, 100, getColour(), 'paddle1');
   paddle1.show();
-//paddle1.move() for computer generated bat;
 
   const paddle2 = new Paddle(805, 160, 25, 100, getColour(), 'paddle2');
   paddle2.show();
 
-
   $(document).on('click', 'button', function (event) {
     event.preventDefault();
     b.ani = window.requestAnimationFrame(mover);
+    paddle1.move();
   });
 
 });
