@@ -6,7 +6,7 @@ const ball = {
   dx: 1,
   dy: 1,
   speed: 6,
-  ani: {}
+  ani: {},
 }
 
 const net = {
@@ -49,6 +49,7 @@ class Paddle {
     this.dy = 1;
     this.colour = colour;
     this.id = id;
+    this.ani = {};
   }
 
   show() {
@@ -65,7 +66,6 @@ class Paddle {
 
   move = () => {
     //console.log("paddle mover function");
-    console.log("PADDLE MOVER", this.y)
     this.y += this.dy * 3;
     //to move the ball with new coordinates
     $("#paddle1").css({ top: `${this.y}px` });
@@ -73,8 +73,18 @@ class Paddle {
     if (this.y > 480 - this.paddleHeight || this.y < 0) {
       this.dy *= -1;
     }
-    window.requestAnimationFrame(this.move);
+    this.ani = window.requestAnimationFrame(this.move);
   };
+
+  reset = () => {
+    console.log("Reset paddle");
+    cancelAnimationFrame(this.ani);
+    this.setPaddlePosition();
+  }
+
+  setPaddlePosition() {
+    $(`#${this.id}`).css("top", `160px`);
+  }
 
   handleKeydown(key) {
     //  console.log(`${key} key is pressed`);
@@ -101,11 +111,20 @@ function getColour() {
   return `rgb(${randomHelper(155, 255)}, ${randomHelper(155, 255)}, ${randomHelper(1, 255)})`;
 }
 
+function setBallPosition() {
+  $("#ball").css("left", `400px`);
+  $("#ball").css("top", `200px`);
+}
+
+function ballReset() {
+  cancelAnimationFrame(ball.ani);
+  setBallPosition();
+}
+
 
 $(document).ready(function () {
   console.log("It works!");
-  $("#ball").css("left", `${ball.x}px`);
-  $("#ball").css("top", `${ball.y}px`);
+  setBallPosition();
 
   $("#net").css("left", `${net.x}px`);
   $("#net").css("top", `${net.y}px`);
@@ -116,10 +135,21 @@ $(document).ready(function () {
   const paddle2 = new Paddle(805, 160, 25, 100, getColour(), 'paddle2');
   paddle2.show();
 
-  $(document).on('click', 'button', function (event) {
+  $(document).on('click', '#start', function (event) {
+    $("#start").addClass("hidden");
+    $("#reset").removeClass("hidden");
     event.preventDefault();
     ball.ani = window.requestAnimationFrame(mover);
     paddle1.move();
+  });
+
+  $(document).on('click', '#reset', function (event) {
+    $("#reset").addClass("hidden");
+    $("#start").removeClass("hidden");
+    event.preventDefault();
+    ballReset();
+    paddle1.reset();
+    paddle2.reset();
   });
 
   $(document).keydown(function (e) {
