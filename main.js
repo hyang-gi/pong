@@ -132,10 +132,10 @@ $(document).ready(function () {
   $("#net").css("left", `${net.x}px`);
   $("#net").css("top", `${net.y}px`);
 
-  const paddle1 = new Paddle(10, 160, 25, 100, getColour(), 'paddle1');
+  const paddle1 = new Paddle(10, 160, 16, 120, getColour(), 'paddle1');
   paddle1.show();
 
-  const paddle2 = new Paddle(805, 160, 25, 100, getColour(), 'paddle2');
+  const paddle2 = new Paddle(814, 160, 16, 120, getColour(), 'paddle2');
   paddle2.show();
 
   $(document).on('click', '#start', function (event) {
