@@ -14,6 +14,8 @@ const net = {
   y: 0,
 }
 
+let computer_score = 5, user_score = 5;
+
 function mover() {
   //console.log("mover function");
   ball.x += ball.dx * ball.speed;
@@ -30,8 +32,30 @@ function mover() {
   if (ball.y > 480 - ball.h || ball.y < 0) {
     ball.dy *= -1;
   }
-
+  counter();
   ball.ani = window.requestAnimationFrame(mover);
+
+}
+
+function counter() {
+
+  if (ball.x < 0 && computer_score > 0) {
+    computer_score -= 1;
+    console.log("computer", computer_score)
+  } else if (ball.x > 840 - ball.w && user_score > 0) {
+    user_score -= 1;
+    console.log("user", user_score)
+  }
+  //display winner
+  if (user_score === 0) {
+    console.log("Computer Wins");
+    return;
+  }
+  if (computer_score === 0) {
+    console.log("User Wins!");
+    return;
+  }
+
 
 }
 
@@ -76,7 +100,7 @@ class Paddle {
   };
 
   reset = () => {
-   // console.log("Reset paddle");
+    // console.log("Reset paddle");
     cancelAnimationFrame(this.ani);
     this.setPaddlePosition();
   }
