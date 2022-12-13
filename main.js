@@ -40,10 +40,9 @@ class Paddle {
     this.y = y;
     this.paddleWidth = paddleWidth;
     this.paddleHeight = paddleHeight;
-    //  this.speed = speed;
     this.dx = 1;
     this.dy = 1;
-    this.colour = colour; //use color gen for this
+    this.colour = colour;
     this.id = id;
   }
 
@@ -56,7 +55,7 @@ class Paddle {
     $(`#${this.id}`).css('width', `${this.paddleWidth}px`);
     $(`#${this.id}`).css('height', `${this.paddleHeight}px`);
     $(`#${this.id}`).css('background', `${this.colour}`);
-    $(`#${this.id}`).css('position', "absolute");       // so this can be given any idea and it still works 
+    $(`#${this.id}`).css('position', "absolute"); 
   }
 
   move = () => {
