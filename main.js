@@ -59,7 +59,7 @@ class Paddle {
     $(`#${this.id}`).css('position', "absolute");       // so this can be given any idea and it still works 
   }
 
-  move() {
+   move = () => {
     //console.log("paddle mover function");
     //the move is happening only once, it's not recognising y on loop
     console.log("PADDLE MOVER", this.y)
@@ -71,7 +71,7 @@ class Paddle {
       this.dy *= -1;
     }
     window.requestAnimationFrame(this.move);
-  }
+  };
 }
 
 
