@@ -14,8 +14,6 @@ const net = {
   y: 0,
 }
 
-let computer_score = 2, user_score = 2;
-
 function mover() {
   //console.log("mover function");
   ball.x += ball.dx * ball.speed;
@@ -25,35 +23,20 @@ function mover() {
   $("#ball").css({ left: `${ball.x}px` });
   $("#ball").css({ top: `${ball.y}px` });
 
-  if (ball.x > 840 - ball.w || ball.x < 0) {
-    ball.dx *= -1;
+  if (ball.x > 840 - ball.w) {
+    ball.x = 400;
+    ball.y = 200;
+  }
+
+  if (ball.x < 0) {
+    ball.x = 400;
+    ball.y = 200;
   }
 
   if (ball.y > 480 - ball.h || ball.y < 0) {
     ball.dy *= -1;
   }
-  counter();
   ball.ani = window.requestAnimationFrame(mover);
-
-}
-
-function counter() {
-  $('#computer_score').text(`Computer: ${computer_score}`);
-  $('#user_score').text(`User: ${user_score}`);
-  if (ball.x < 0 && computer_score > 0) {
-    computer_score -= 1;
-    console.log("computer", computer_score)
-    if (computer_score === 0) {
-      return;
-    }
-  } else if (ball.x > 840 - ball.w && user_score > 0) {
-    user_score -= 1;
-    console.log("user", user_score);
-    if (user_score === 0) {
-      return;
-    }
-  }
-
 
 }
 
@@ -89,7 +72,7 @@ class Paddle {
     //console.log("paddle mover function");
     this.y += this.dy * 3;
     //to move the paddle with new coordinates
-    $("#paddle1").css({ top: `${this.y}px` });
+    $(`#${this.id}`).css({ top: `${this.y}px` });
 
     if (this.y > 480 - this.paddleHeight || this.y < 0) {
       this.dy *= -1;
