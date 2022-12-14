@@ -154,6 +154,14 @@ function ballPause() {
   cancelAnimationFrame(ball.ani);
 }
 
+function resetScores() {
+  console.log("reset")
+  computer_score = 2;
+  user_score = 2;
+  $('#computer_score').text(`Computer: ${computer_score}`);
+  $('#user_score').text(`User: ${user_score}`);
+}
+
 $(document).ready(function () {
   console.log("It works!");
   setBallPosition();
@@ -182,6 +190,7 @@ $(document).ready(function () {
     ballReset();
     paddle1.reset();
     paddle2.reset();
+    resetScores();
   });
 
   $(document).keydown(function (e) {
