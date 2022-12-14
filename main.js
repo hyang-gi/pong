@@ -45,7 +45,7 @@ class Paddle {
 
   move = () => {
     //console.log("paddle mover function");
-    this.y += this.dy * 3;
+    this.y += this.dy * 4;
     //to move the paddle with new coordinates
     $(`#${this.id}`).css({ top: `${this.y}px` });
 
@@ -72,10 +72,16 @@ class Paddle {
   handleKeydown(key) {
     //  console.log(`${key} key is pressed`);
     if (key === "ArrowUp" && !(this.y < 0)) {
-      this.y -= this.dy * 6;
+      this.y -= this.dy * 20;
+      if (this.y < 0) {
+        this.y = 0;
+      }
       $(`#${this.id}`).css({ top: `${this.y}px` });
     } else if (key === "ArrowDown" && !(this.y > 480 - this.paddleHeight)) {
-      this.y += this.dy * 6;
+      this.y += this.dy * 20;
+      if (this.y > 480 - this.paddleHeight) {
+        this.y = 360;
+      }
       $(`#${this.id}`).css({ top: `${this.y}px` });
     }
   }
