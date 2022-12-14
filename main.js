@@ -7,37 +7,12 @@ const ball = {
   dy: 1,
   speed: 4,
   ani: {},
+  radius: 20,
 }
 
 const net = {
   x: 420,
   y: 0,
-}
-
-function mover() {
-  //console.log("mover function");
-  ball.x += ball.dx * ball.speed;
-  ball.y += ball.dy * ball.speed;
-
-  //to move the ball with new coordinates
-  $("#ball").css({ left: `${ball.x}px` });
-  $("#ball").css({ top: `${ball.y}px` });
-
-  if (ball.x > 840 - ball.w) {
-    ball.x = 400;
-    ball.y = randomHelper(48,360);
-  }
-
-  if (ball.x < 0) {
-    ball.x = 400;
-    ball.y = randomHelper(48,360);;
-  }
-
-  if (ball.y > 480 - ball.h || ball.y < 0) {
-    ball.dy *= -1;
-  }
-  ball.ani = window.requestAnimationFrame(mover);
-
 }
 
 // canvas and ball are fixed entities of the game, hence no class is used only for Paddles
@@ -119,6 +94,15 @@ function getColour() {
   return `rgb(${randomHelper(155, 255)}, ${randomHelper(155, 255)}, ${randomHelper(1, 255)})`;
 }
 
+function collisionDetection(paddle, ball) {
+  let aLeftOfB = (paddle.x + paddle.paddleWidth) < ball.x;
+  let aRightOfB = paddle.x > (ball.x + ball.w);
+  let aAboveB = (paddle.y + paddle.paddleHeight) < ball.y;
+  let aBelowB = paddle.y > (ball.y + ball.h);
+
+  return !(aLeftOfB || aRightOfB || aAboveB || aBelowB);
+}
+
 /* ------------------
    reset/postioning functions
    ------------------ */
@@ -157,6 +141,42 @@ $(document).ready(function () {
 
   const paddle2 = new Paddle(814, 160, 16, 120, getColour(), 'paddle2');
   paddle2.show();
+
+  function mover() {
+    //console.log("mover function");
+    ball.x += ball.dx * ball.speed;
+    ball.y += ball.dy * ball.speed;
+
+    //to move the ball with new coordinates
+    $("#ball").css({ left: `${ball.x}px` });
+    $("#ball").css({ top: `${ball.y}px` });
+
+    if (ball.x > 840 - ball.w) {
+      ball.x = 400;
+      ball.y = randomHelper(48, 360);
+      ball.speed = 4;
+    }
+
+    if (ball.x < 0) {
+      ball.x = 400;
+      ball.y = randomHelper(48, 360);
+      ball.speed = 4;
+    }
+
+    if (ball.y > 480 - ball.h || ball.y < 0) {
+      ball.dy *= -1;
+    }
+
+    let collision1 = collisionDetection(paddle1, ball);
+    let collision2 = collisionDetection(paddle2, ball);
+
+    if (collision1 || collision2) {
+      ball.dx *= -1;
+      ball.speed += 1;
+    }
+    ball.ani = window.requestAnimationFrame(mover);
+
+  }
 
   $(document).on('click', '#start', function (event) {
     $("#start").addClass("hidden");
