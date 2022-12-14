@@ -5,7 +5,7 @@ const ball = {
   h: 40,
   dx: 1,
   dy: 1,
-  speed: 6,
+  speed: 4,
   ani: {},
 }
 
@@ -25,12 +25,12 @@ function mover() {
 
   if (ball.x > 840 - ball.w) {
     ball.x = 400;
-    ball.y = 200;
+    ball.y = randomHelper(48,360);
   }
 
   if (ball.x < 0) {
     ball.x = 400;
-    ball.y = 200;
+    ball.y = randomHelper(48,360);;
   }
 
   if (ball.y > 480 - ball.h || ball.y < 0) {
