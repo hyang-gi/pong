@@ -29,6 +29,7 @@ body {
   height: 480px;
   background-color: beige;
   position: absolute;
+  border: 2px dashed black;
 }
 
 #ball {
