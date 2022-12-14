@@ -39,21 +39,20 @@ function mover() {
 
 function counter() {
 
+  document.getElementById('computer_score').innerHTML = `Computer: ${computer_score}`;
+  document.getElementById('user_score').innerHTML = `User: ${user_score}`;
   if (ball.x < 0 && computer_score > 0) {
     computer_score -= 1;
     console.log("computer", computer_score)
+    if(computer_score === 0) {
+      return;
+    }
   } else if (ball.x > 840 - ball.w && user_score > 0) {
     user_score -= 1;
-    console.log("user", user_score)
-  }
-  //display winner
-  if (user_score === 0) {
-    console.log("Computer Wins");
-    return;
-  }
-  if (computer_score === 0) {
-    console.log("User Wins!");
-    return;
+    console.log("user", user_score);
+    if(user_score === 0) {
+      return;
+    }
   }
 
 
@@ -105,6 +104,10 @@ class Paddle {
     this.setPaddlePosition();
   }
 
+  pause = () => {
+    cancelAnimationFrame(this.ani);
+  }
+
   setPaddlePosition() {
     $(`#${this.id}`).css("top", `160px`);
   }
@@ -148,6 +151,9 @@ function ballReset() {
   setBallPosition();
 }
 
+function ballPause() {
+  cancelAnimationFrame(ball.ani);
+}
 
 $(document).ready(function () {
   console.log("It works!");
