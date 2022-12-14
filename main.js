@@ -43,13 +43,13 @@ function counter() {
   if (ball.x < 0 && computer_score > 0) {
     computer_score -= 1;
     console.log("computer", computer_score)
-    if(computer_score === 0) {
+    if (computer_score === 0) {
       return;
     }
   } else if (ball.x > 840 - ball.w && user_score > 0) {
     user_score -= 1;
     console.log("user", user_score);
-    if(user_score === 0) {
+    if (user_score === 0) {
       return;
     }
   }
