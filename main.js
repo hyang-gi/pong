@@ -112,10 +112,10 @@ class Paddle {
   handleKeydown(key) {
     //  console.log(`${key} key is pressed`);
     if (key === "ArrowUp" && !(this.y < 0)) {
-      this.y -= this.dy * 20;
+      this.y -= this.dy * 6;
       $(`#${this.id}`).css({ top: `${this.y}px` });
     } else if (key === "ArrowDown" && !(this.y > 480 - this.paddleHeight)) {
-      this.y += this.dy * 20;
+      this.y += this.dy * 6;
       $(`#${this.id}`).css({ top: `${this.y}px` });
     }
   }
