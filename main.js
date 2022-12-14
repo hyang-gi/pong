@@ -92,6 +92,11 @@ class Paddle {
    helper functions
    ------------------ */
 
+function randomDirection() {
+  const direction = [-1, 1];
+  return direction[Math.floor(Math.random() * direction.length)];
+}
+
 function randomHelper(min, max) {
   return Math.floor(Math.random() * max) + min;
 }
@@ -161,12 +166,14 @@ $(document).ready(function () {
       ball.x = 400;
       ball.y = randomHelper(48, 360);
       ball.speed = 4;
+      ball.dx = randomDirection();
     }
 
     if (ball.x < 0) {
       ball.x = 400;
       ball.y = randomHelper(48, 360);
       ball.speed = 4;
+      ball.dx = randomDirection();
     }
 
     if (ball.y > 480 - ball.h || ball.y < 0) {
