@@ -38,9 +38,8 @@ function mover() {
 }
 
 function counter() {
-
-  document.getElementById('computer_score').innerHTML = `Computer: ${computer_score}`;
-  document.getElementById('user_score').innerHTML = `User: ${user_score}`;
+  $('#computer_score').text(`Computer: ${computer_score}`);
+  $('#user_score').text(`User: ${user_score}`);
   if (ball.x < 0 && computer_score > 0) {
     computer_score -= 1;
     console.log("computer", computer_score)
