@@ -133,7 +133,7 @@ const throttle = (func, delay) => {
 
 const changeBallDirection = throttle(() => {
   ball.dx *= -1;
-}, 500/ball.speed); //ball speed is dynamic, to decrease the delay as the speed increases
+}, 500 / ball.speed); //ball speed is dynamic, to decrease the delay as the speed increases
 
 function collisionDetection(paddle, ball) {
   //console.log("Checks for collision detection between the paddle and ball");
@@ -162,7 +162,7 @@ function ballReset() {
 }
 
 function ballPause() {
-  //console.log("pauses ball movement");
+  console.log("pauses ball movement");
   cancelAnimationFrame(ball.ani);
 }
 
@@ -197,6 +197,10 @@ $(document).ready(function () {
 
     if (ball.x > 840 - ball.w) {
       console.log("user missed ball");
+      if (user_score > 0) {
+        user_score -= 1;
+        $("#user_score").text(`${user_score}`);
+      }
       ball.x = 400;
       ball.y = randomHelper(48, 360);
       ball.speed = 4;
@@ -205,6 +209,10 @@ $(document).ready(function () {
 
     if (ball.x < 0) {
       console.log("computer missed ball");
+      if (computer_score > 0) {
+        computer_score -= 1;
+        $("#computer_score").text(`${computer_score}`);
+      }
       ball.x = 400;
       ball.y = randomHelper(48, 360);
       ball.speed = 4;
@@ -222,9 +230,26 @@ $(document).ready(function () {
       //console.log("collision between paddle-ball detected");
       ball.speed += 1;
       changeBallDirection();
-      
+    }
+    // condition to check to end game and declare winner
+    if (user_score === 0) {
+      console.log("computer wins!");
+      gameOver();
+      return;
+    } else if (computer_score === 0) {
+      console.log("user wins!");
+      gameOver();
+      return;
     }
     ball.ani = window.requestAnimationFrame(mover);
+  }
+
+
+  function gameOver() {
+    console.log("game over!");
+    ballPause();
+    paddle1.pause();
+    paddle2.pause();
   }
 
   $(document).on("click", "#start", function (event) {
