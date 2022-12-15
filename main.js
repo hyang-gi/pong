@@ -15,7 +15,7 @@ const net = {
   y: 0,
 }
 
-// canvas and ball are fixed entities of the game, hence no class is used only for Paddles
+// canvas and ball are fixed entities of the game, hence class is used only for Paddles
 
 class Paddle {
 
@@ -44,8 +44,9 @@ class Paddle {
   }
 
   move = () => {
-    //console.log("paddle mover function");
+    //console.log("computer generated paddle mover function");
     this.y += this.dy * 4;
+
     //to move the paddle with new coordinates
     $(`#${this.id}`).css({ top: `${this.y}px` });
 
@@ -56,21 +57,24 @@ class Paddle {
   };
 
   reset = () => {
-    // console.log("Reset paddle");
+    // console.log("Reset paddle position");
     cancelAnimationFrame(this.ani);
     this.setPaddlePosition();
   }
 
   pause = () => {
+    //console.log("Pause paddle movement");
     cancelAnimationFrame(this.ani);
   }
 
   setPaddlePosition() {
+    //console.log("Set paddle position to initial values");
     $(`#${this.id}`).css("top", `160px`);
   }
 
   handleKeydown(key) {
-    //  console.log(`${key} key is pressed`);
+    /* console.log("User controlled paddle movement"); 
+       console.log(`${key} key is pressed`); */
     if (key === "ArrowUp" && !(this.y < 0)) {
       this.y -= this.dy * 20;
       if (this.y < 0) {
@@ -93,19 +97,23 @@ class Paddle {
    ------------------ */
 
 function randomDirection() {
+  //console.log("generates random direction from array list");
   const direction = [-1, 1, 1, -1];
   return direction[Math.floor(Math.random() * direction.length)];
 }
 
 function randomHelper(min, max) {
+  //console.log("gives random values within a range", min+"-"+max);
   return Math.floor(Math.random() * max) + min;
 }
 
 function getColour() {
+  //console.log("generates random rgb colors, 155-255 to display bright colors only");
   return `rgb(${randomHelper(155, 255)}, ${randomHelper(155, 255)}, ${randomHelper(1, 255)})`;
 }
 
 function collisionDetection(paddle, ball) {
+  //console.log("Checks for collision detection between the paddle and ball");
   let paddleLeftOfBall = (paddle.x + paddle.paddleWidth) <= ball.x;
   let paddleRightOfBall = paddle.x >= (ball.x + ball.w);
   let paddleAboveBall = (paddle.y + paddle.paddleHeight) <= ball.y;
@@ -119,21 +127,24 @@ function collisionDetection(paddle, ball) {
    ------------------ */
 
 function setBallPosition() {
+  //console.log("sets ball to the initial position");
   $("#ball").css("left", `400px`);
   $("#ball").css("top", `200px`);
 }
 
 function ballReset() {
+  //console.log("reset ball movement");
   cancelAnimationFrame(ball.ani);
   setBallPosition();
 }
 
 function ballPause() {
+  //console.log("pauses ball movement");
   cancelAnimationFrame(ball.ani);
 }
 
 function resetScores() {
-  console.log("reset")
+  //console.log("reset the score values");
   computer_score = 2;
   user_score = 2;
   $('#computer_score').text(`Computer: ${computer_score}`);
@@ -184,6 +195,7 @@ $(document).ready(function () {
     let collision2 = collisionDetection(paddle2, ball);
 
     if (collision1 || collision2) {
+      //console.log("collision between paddle-ball detected")
       ball.dx *= -1;
       ball.speed += 1;
     }
@@ -192,6 +204,7 @@ $(document).ready(function () {
   }
 
   $(document).on('click', '#start', function (event) {
+    //console.log("start game button clicked");
     $("#start").addClass("hidden");
     $("#reset").removeClass("hidden");
     event.preventDefault();
@@ -200,6 +213,7 @@ $(document).ready(function () {
   });
 
   $(document).on('click', '#reset', function (event) {
+    //console.log("reset game button clicked");
     $("#reset").addClass("hidden");
     $("#start").removeClass("hidden");
     event.preventDefault();
@@ -210,6 +224,7 @@ $(document).ready(function () {
   });
 
   $(document).keydown(function (e) {
+    //console.log("user controlled key event listener", e)
     paddle2.handleKeydown(e.key);
   });
 
