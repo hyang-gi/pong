@@ -162,7 +162,7 @@ function ballReset() {
 }
 
 function ballPause() {
-  console.log("pauses ball movement");
+  //console.log("pauses ball movement");
   cancelAnimationFrame(ball.ani);
 }
 
@@ -196,7 +196,7 @@ $(document).ready(function () {
     $("#ball").css({ top: `${ball.y}px` });
 
     if (ball.x > 840 - ball.w) {
-      console.log("user missed ball");
+      //console.log("user missed ball");
       if (user_score > 0) {
         user_score -= 1;
         $("#user_score").text(`${user_score}`);
@@ -208,7 +208,7 @@ $(document).ready(function () {
     }
 
     if (ball.x < 0) {
-      console.log("computer missed ball");
+      //console.log("computer missed ball");
       if (computer_score > 0) {
         computer_score -= 1;
         $("#computer_score").text(`${computer_score}`);
@@ -244,12 +244,28 @@ $(document).ready(function () {
     ball.ani = window.requestAnimationFrame(mover);
   }
 
+  function startGame() {
+    //console.log("start game function");
+    ball.ani = window.requestAnimationFrame(mover);
+    paddle1.move();
+  }
+
 
   function gameOver() {
     console.log("game over!");
     ballPause();
     paddle1.pause();
     paddle2.pause();
+    $("#reset").addClass("hidden");
+    $("#play_again").removeClass("hidden");
+  }
+
+  function refreshGame() {
+    //console.log("refresh game function");
+    ballReset();
+    paddle1.reset();
+    paddle2.reset();
+    resetScores();
   }
 
   $(document).on("click", "#start", function (event) {
@@ -257,8 +273,7 @@ $(document).ready(function () {
     $("#start").addClass("hidden");
     $("#reset").removeClass("hidden");
     event.preventDefault();
-    ball.ani = window.requestAnimationFrame(mover);
-    paddle1.move();
+    startGame();
   });
 
   $(document).on("click", "#reset", function (event) {
@@ -266,10 +281,16 @@ $(document).ready(function () {
     $("#reset").addClass("hidden");
     $("#start").removeClass("hidden");
     event.preventDefault();
-    ballReset();
-    paddle1.reset();
-    paddle2.reset();
-    resetScores();
+    refreshGame();
+  });
+
+  $(document).on("click", "#play_again", function (event) {
+    //console.log("reset game button clicked");
+    $("#play_again").addClass("hidden");
+    $("#reset").removeClass("hidden");
+    event.preventDefault();
+    refreshGame();
+    startGame();
   });
 
   $(document).keydown(function (e) {
