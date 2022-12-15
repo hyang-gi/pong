@@ -15,6 +15,9 @@ const net = {
   y: 0,
 }
 
+let computer_score = user_score = initial_score = 2;
+let highscore = 0;
+
 // canvas and ball are fixed entities of the game, hence class is used only for Paddles
 
 class Paddle {
@@ -108,10 +111,7 @@ function randomHelper(min, max) {
 
 function getColour() {
   //console.log("generates random rgb colors, 155-255 to display bright colors only");
-  return `rgb(${randomHelper(155, 255)}, ${randomHelper(
-    155,
-    255
-  )}, ${randomHelper(1, 255)})`;
+  return `rgb(${randomHelper(155, 255)}, ${randomHelper(155, 255)}, ${randomHelper(1, 255)})`;
 }
 
 /*throttle and debounce in js, throttle -> 
@@ -168,10 +168,9 @@ function ballPause() {
 
 function resetScores() {
   //console.log("reset the score values");
-  computer_score = 2;
-  user_score = 2;
-  $("#computer_score").text(`Computer: ${computer_score}`);
-  $("#user_score").text(`User: ${user_score}`);
+  computer_score = user_score = initial_score;
+  $("#computer_score").text(`${computer_score}`);
+  $("#user_score").text(`${user_score}`);
 }
 
 $(document).ready(function () {
@@ -197,6 +196,7 @@ $(document).ready(function () {
     $("#ball").css({ top: `${ball.y}px` });
 
     if (ball.x > 840 - ball.w) {
+      console.log("user missed ball");
       ball.x = 400;
       ball.y = randomHelper(48, 360);
       ball.speed = 4;
@@ -204,6 +204,7 @@ $(document).ready(function () {
     }
 
     if (ball.x < 0) {
+      console.log("computer missed ball");
       ball.x = 400;
       ball.y = randomHelper(48, 360);
       ball.speed = 4;
