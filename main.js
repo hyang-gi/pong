@@ -166,7 +166,7 @@ function ballPause() {
   cancelAnimationFrame(ball.ani);
 }
 
-function resetScores() {
+function displayScores() {
   //console.log("reset the score values");
   computer_score = user_score = initial_score;
   $("#computer_score").text(`${computer_score}`);
@@ -175,7 +175,9 @@ function resetScores() {
 
 $(document).ready(function () {
   console.log("It works!");
+  
   setBallPosition();
+  displayScores();
 
   $("#net").css("left", `${net.x}px`);
   $("#net").css("top", `${net.y}px`);
@@ -265,7 +267,7 @@ $(document).ready(function () {
     ballReset();
     paddle1.reset();
     paddle2.reset();
-    resetScores();
+    displayScores();
   }
 
   $(document).on("click", "#start", function (event) {
