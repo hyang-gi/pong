@@ -33,14 +33,14 @@ class Paddle {
 
   show() {
     // console.log("paddle show");
-    $('#canvas').append(`<div id=${this.id}></div>`);
+    $("#canvas").append(`<div id=${this.id}></div>`);
 
-    $(`#${this.id}`).css('left', `${this.x}px`);
-    $(`#${this.id}`).css('top', `${this.y}px`);
-    $(`#${this.id}`).css('width', `${this.paddleWidth}px`);
-    $(`#${this.id}`).css('height', `${this.paddleHeight}px`);
-    $(`#${this.id}`).css('background', `${this.colour}`);
-    $(`#${this.id}`).css('position', "absolute");
+    $(`#${this.id}`).css("left", `${this.x}px`);
+    $(`#${this.id}`).css("top", `${this.y}px`);
+    $(`#${this.id}`).css("width", `${this.paddleWidth}px`);
+    $(`#${this.id}`).css("height", `${this.paddleHeight}px`);
+    $(`#${this.id}`).css("background", `${this.colour}`);
+    $(`#${this.id}`).css("position", "absolute");
   }
 
   move = () => {
@@ -91,7 +91,6 @@ class Paddle {
   }
 }
 
-
 /* ------------------
    helper functions
    ------------------ */
@@ -109,15 +108,39 @@ function randomHelper(min, max) {
 
 function getColour() {
   //console.log("generates random rgb colors, 155-255 to display bright colors only");
-  return `rgb(${randomHelper(155, 255)}, ${randomHelper(155, 255)}, ${randomHelper(1, 255)})`;
+  return `rgb(${randomHelper(155, 255)}, ${randomHelper(
+    155,
+    255
+  )}, ${randomHelper(1, 255)})`;
 }
+
+/*throttle and debounce in js, throttle -> 
+basically it listens to the first call until the delay
+*/
+
+const throttle = (func, delay) => {
+  let toThrottle = false; //checks whether the duration has passed or not
+  return function (...args) { //second func returned by throttle
+    if (!toThrottle) {
+      toThrottle = true;
+      func.apply(this, args);
+      setTimeout(() => {
+        toThrottle = false;
+      }, delay);
+    }
+  };
+};
+
+const changeBallDirection = throttle(() => {
+  ball.dx *= -1;
+}, 500/ball.speed); //ball speed is dynamic, to decrease the delay as the speed increases
 
 function collisionDetection(paddle, ball) {
   //console.log("Checks for collision detection between the paddle and ball");
-  let paddleLeftOfBall = (paddle.x + paddle.paddleWidth) <= ball.x;
-  let paddleRightOfBall = paddle.x >= (ball.x + ball.w);
-  let paddleAboveBall = (paddle.y + paddle.paddleHeight) <= ball.y;
-  let paddleBelowBall = paddle.y >= (ball.y + ball.h);
+  let paddleLeftOfBall = paddle.x + paddle.paddleWidth <= ball.x;
+  let paddleRightOfBall = paddle.x >= ball.x + ball.w;
+  let paddleAboveBall = paddle.y + paddle.paddleHeight <= ball.y;
+  let paddleBelowBall = paddle.y >= ball.y + ball.h;
 
   return !(paddleLeftOfBall || paddleRightOfBall || paddleAboveBall || paddleBelowBall);
 }
@@ -147,8 +170,8 @@ function resetScores() {
   //console.log("reset the score values");
   computer_score = 2;
   user_score = 2;
-  $('#computer_score').text(`Computer: ${computer_score}`);
-  $('#user_score').text(`User: ${user_score}`);
+  $("#computer_score").text(`Computer: ${computer_score}`);
+  $("#user_score").text(`User: ${user_score}`);
 }
 
 $(document).ready(function () {
@@ -158,10 +181,10 @@ $(document).ready(function () {
   $("#net").css("left", `${net.x}px`);
   $("#net").css("top", `${net.y}px`);
 
-  const paddle1 = new Paddle(10, 160, 16, 120, getColour(), 'paddle1');
+  const paddle1 = new Paddle(10, 160, 16, 120, getColour(), "paddle1");
   paddle1.show();
 
-  const paddle2 = new Paddle(814, 160, 16, 120, getColour(), 'paddle2');
+  const paddle2 = new Paddle(814, 160, 16, 120, getColour(), "paddle2");
   paddle2.show();
 
   function mover() {
@@ -195,15 +218,15 @@ $(document).ready(function () {
     let collision2 = collisionDetection(paddle2, ball);
 
     if (collision1 || collision2) {
-      //console.log("collision between paddle-ball detected")
-      ball.dx *= -1;
+      //console.log("collision between paddle-ball detected");
       ball.speed += 1;
+      changeBallDirection();
+      
     }
     ball.ani = window.requestAnimationFrame(mover);
-
   }
 
-  $(document).on('click', '#start', function (event) {
+  $(document).on("click", "#start", function (event) {
     //console.log("start game button clicked");
     $("#start").addClass("hidden");
     $("#reset").removeClass("hidden");
@@ -212,7 +235,7 @@ $(document).ready(function () {
     paddle1.move();
   });
 
-  $(document).on('click', '#reset', function (event) {
+  $(document).on("click", "#reset", function (event) {
     //console.log("reset game button clicked");
     $("#reset").addClass("hidden");
     $("#start").removeClass("hidden");
@@ -227,5 +250,4 @@ $(document).ready(function () {
     //console.log("user controlled key event listener", e)
     paddle2.handleKeydown(e.key);
   });
-
 });
