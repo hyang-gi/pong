@@ -17,7 +17,9 @@ body {
 #canvas-text h2 {
   margin: 0;
 }
-
+.score {
+  color: white;
+}
 #canvas {
   border: 4px dashed beige;
   width: 840px;
