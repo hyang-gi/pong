@@ -16,7 +16,7 @@ const net = {
 }
 
 let computer_score = user_score = initial_score = 2;
-let highscore = 0;
+let highscore = user_wins = computer_wins = 0;
 
 // canvas and ball are fixed entities of the game, hence class is used only for Paddles
 
@@ -175,7 +175,7 @@ function displayScores() {
 
 $(document).ready(function () {
   console.log("It works!");
-  
+
   setBallPosition();
   displayScores();
 
@@ -236,10 +236,12 @@ $(document).ready(function () {
     // condition to check to end game and declare winner
     if (user_score === 0) {
       console.log("computer wins!");
+      computer_wins += 1;
       gameOver();
       return;
     } else if (computer_score === 0) {
       console.log("user wins!");
+      user_wins += 1;
       gameOver();
       return;
     }
