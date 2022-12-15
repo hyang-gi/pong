@@ -1,5 +1,7 @@
+@import url('https://fonts.cdnfonts.com/css/thegoodmonolith');
+                
 body {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'TheGoodMonolith', sans-serif;
 }
 
 #wrapper {
@@ -42,4 +44,12 @@ body {
 
 .hidden {
   display: none;
+}
+
+button {
+  font-family: 'TheGoodMonolith', sans-serif;
+  border-radius: 8px;
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
 }
