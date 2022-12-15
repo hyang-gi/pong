@@ -106,12 +106,12 @@ function getColour() {
 }
 
 function collisionDetection(paddle, ball) {
-  let aLeftOfB = (paddle.x + paddle.paddleWidth) < ball.x;
-  let aRightOfB = paddle.x > (ball.x + ball.w);
-  let aAboveB = (paddle.y + paddle.paddleHeight) < ball.y;
-  let aBelowB = paddle.y > (ball.y + ball.h);
+  let paddleLeftOfBall = (paddle.x + paddle.paddleWidth) <= ball.x;
+  let paddleRightOfBall = paddle.x >= (ball.x + ball.w);
+  let paddleAboveBall = (paddle.y + paddle.paddleHeight) <= ball.y;
+  let paddleBelowBall = paddle.y >= (ball.y + ball.h);
 
-  return !(aLeftOfB || aRightOfB || aAboveB || aBelowB);
+  return !(paddleLeftOfBall || paddleRightOfBall || paddleAboveBall || paddleBelowBall);
 }
 
 /* ------------------
