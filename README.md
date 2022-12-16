@@ -1,3 +1,9 @@
+## [Pong Game Website Link](https://www.scss.tcd.ie/~mohsins/cw7025_december_2022)
+
+The above linked game has been developed for the first semester final assignment for Programming for Digital Media module. Enjoy playing the game. :D
+
+Below is a detailed description of the assignment criteria and the process followed.
+
 ## Assignment
 
 - Have one computer-operated bat and one user-operated bat
@@ -16,8 +22,6 @@
 * Use of jQuery.
 * Correctly using classes.
 * Creativity, what can you do to wow the gamer? Think sound effects, graphics, boosts (temporary larger paddle, bigger ball), other?
-
-## [Pong Game Website Link](https://www.scss.tcd.ie/~mohsins/cw7025_december_2022)
 
 ## Process Description
 
