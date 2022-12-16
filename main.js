@@ -278,6 +278,7 @@ $(document).ready(function () {
   function startGame() {
     //console.log("start game function");
     stopSound("game_over_audio");
+    playSound("game_start_audio");
     ball.ani = window.requestAnimationFrame(mover);
     paddle1.move();
     activateKeyDown();
