@@ -123,6 +123,19 @@ function getColour() {
   return `rgb(${randomHelper(155, 255)}, ${randomHelper(155, 255)}, ${randomHelper(1, 255)})`;
 }
 
+function playSound(id) {
+  const audio = $(`#${id}`)[0];
+  if (!audio) return;
+  audio.currentTime = 0;
+  audio.play();
+}
+
+function stopSound(id) {
+  const audio = $(`#${id}`)[0];
+  if (!audio) return;
+  audio.pause();
+  audio.currentTime = 0;
+}
 /*throttle and debounce in js, throttle -> 
 basically it listens to the first call until the delay
 */
@@ -239,6 +252,7 @@ $(document).ready(function () {
 
     if (collision1 || collision2) {
       //console.log("collision between paddle-ball detected");
+      playSound("collision_audio");
       ball.speed += 1;
       changeBallDirection();
     }
@@ -263,6 +277,7 @@ $(document).ready(function () {
 
   function startGame() {
     //console.log("start game function");
+    stopSound("game_over_audio");
     ball.ani = window.requestAnimationFrame(mover);
     paddle1.move();
     activateKeyDown();
@@ -270,6 +285,7 @@ $(document).ready(function () {
 
   function gameOver() {
     //console.log("game over!");
+    playSound("game_over_audio");
     ballPause();
     paddle1.pause();
     paddle2.pauseKeydown();
