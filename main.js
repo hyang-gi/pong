@@ -239,12 +239,14 @@ $(document).ready(function () {
     }
     // condition to check to end game and declare winner
     if (user_score === 0) {
-      console.log("computer wins!");
+      //console.log("computer wins!");
+      $("#winner_declaration").text("Computer Wins!");
       computer_wins += 1;
       gameOver();
       return;
     } else if (computer_score === 0) {
-      console.log("user wins!");
+      //console.log("user wins!");
+      $("#winner_declaration").text("User Wins!");
       user_wins += 1;
       gameOver();
       return;

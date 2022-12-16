@@ -48,14 +48,20 @@ body {
   padding: 0px;
   background-color: beige;
   color: black;
-  font-size: 68px;
+  font-size: 60px;
   font-weight: bolder;
   position: absolute;
 }
 
+#winner_declaration {
+  text-align: center;
+  padding-top: 12%;
+  padding-bottom: 4%;
+}
+
 #game_over_text {
   text-align: center;
-  padding: 24% 0% 24% 0%;
+  
 }
 
 #net {
