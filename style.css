@@ -41,25 +41,33 @@ body {
   position: relative;
 }
 
-#game_over {
+#game_over_wrapper, #welcome_wrapper {
   border: 16px dashed black;
   width: 440px;
   height: 280px;
   padding: 0px;
   background-color: beige;
   color: black;
-  font-size: 60px;
   font-weight: bolder;
   position: absolute;
 }
 
+#welcome_text {
+  padding-top: 8%;
+  font-size: 36px;
+  font-weight: bolder;
+  text-align: center;
+}
+
 #winner_declaration {
+  font-size: 60px;
   text-align: center;
   padding-top: 12%;
   padding-bottom: 4%;
 }
 
 #game_over_text {
+  font-size: 60px;
   text-align: center;
   
 }
