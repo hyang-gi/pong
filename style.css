@@ -34,6 +34,25 @@ body {
   margin-left: 24px;
 }
 
+#wins_wrapper {
+  color: white;
+  display: flex;
+  font-size: 16px;
+  justify-content: space-between;
+  position: relative;
+  margin-top: -60px;
+}
+
+#computer_wins {
+  text-align: right;
+  margin-left: 12px;
+}
+
+#user_wins {
+  text-align: left;
+  margin-right: 12px;
+}
+
 #canvas {
   border: 4px dashed #DBD3D8;
   width: 840px;

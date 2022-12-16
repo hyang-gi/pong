@@ -195,11 +195,18 @@ function displayScores() {
   $("#user_score").text(`${user_score}`);
 }
 
+function displayWins() {
+  //console.log("displays the no of wins on canvas");
+  $("#computer_wins").text(`Computer: ${computer_wins}`);
+  $("#user_wins").text(`User: ${user_wins}`);
+}
+
 $(document).ready(function () {
   console.log("It works!");
 
   setBallPosition();
   displayScores();
+  displayWins();
 
   $("#net").css("left", `${net.x}px`);
   $("#net").css("top", `${net.y}px`);
@@ -262,6 +269,7 @@ $(document).ready(function () {
       $("#winner_declaration").text("Computer Wins!");
       computer_wins = JSON.parse(window.localStorage.getItem('Computer Wins')) + 1;
       window.localStorage.setItem('Computer Wins', computer_wins);
+      $("#computer_wins").text(`Computer: ${computer_wins}`);
       gameOver();
       return;
     } else if (computer_score === 0) {
@@ -269,6 +277,7 @@ $(document).ready(function () {
       $("#winner_declaration").text("User Wins!");
       user_wins = JSON.parse(window.localStorage.getItem('User Wins')) + 1; 
       window.localStorage.setItem('User Wins', user_wins);
+      $("#user_wins").text(`User: ${user_wins}`);
       gameOver();
       return;
     }
