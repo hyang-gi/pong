@@ -16,7 +16,8 @@ const net = {
 }
 
 let computer_score = user_score = initial_score = 2;
-let highscore = user_wins = computer_wins = 0;
+let highscore, user_wins = computer_wins = 0;
+let startTime, endTime;
 
 //assigning number of wins in local storage
 
@@ -201,6 +202,31 @@ function displayWins() {
   $("#user_wins").text(`User: ${user_wins}`);
 }
 
+function startScoreTracking() {
+  startTime = new Date();
+  //console.log(startTime);
+};
+
+function endScoreTracking() {
+  endTime = new Date();
+  var timeDiff = endTime - startTime;
+  timeDiff /= 1000;
+  var seconds = Math.round(timeDiff);
+  //console.log({seconds});
+  highscore = seconds;
+  let existing_highscore = JSON.parse(window.localStorage.getItem('Highscore'))
+  if (existing_highscore != undefined) {
+    if (existing_highscore > highscore) {
+      return;
+    } else {
+      window.localStorage.setItem('Highscore', highscore);
+    }
+  } else {
+    window.localStorage.setItem('Highscore', highscore);
+  }
+
+}
+
 $(document).ready(function () {
   console.log("It works!");
 
@@ -275,7 +301,7 @@ $(document).ready(function () {
     } else if (computer_score === 0) {
       //console.log("user wins!");
       $("#winner_declaration").text("User Wins!");
-      user_wins = JSON.parse(window.localStorage.getItem('User Wins')) + 1; 
+      user_wins = JSON.parse(window.localStorage.getItem('User Wins')) + 1;
       window.localStorage.setItem('User Wins', user_wins);
       $("#user_wins").text(`User: ${user_wins}`);
       gameOver();
@@ -295,6 +321,7 @@ $(document).ready(function () {
 
   function gameOver() {
     //console.log("game over!");
+    endScoreTracking();
     playSound("game_over_audio");
     ballPause();
     paddle1.pause();
@@ -315,8 +342,9 @@ $(document).ready(function () {
   $(document).on("click", "#start", function (event) {
     //console.log("start game button clicked");
     event.preventDefault();
+    startScoreTracking();
     $("#welcome_wrapper").addClass("hidden");
-    setTimeout(function() {
+    setTimeout(function () {
       //console.log("delay before game starts");
       $("#start").addClass("hidden");
       $("#play_again").addClass("hidden");
@@ -327,7 +355,7 @@ $(document).ready(function () {
 
   $(document).on("click", "#reset", function (event) {
     //console.log("reset game button clicked");
-    setTimeout(function() {
+    setTimeout(function () {
       $("#reset").addClass("hidden");
       $("#play_again").addClass("hidden");
       $("#start").removeClass("hidden");
