@@ -266,6 +266,7 @@ $(document).ready(function () {
     paddle2.pauseKeydown();
     $("#reset").addClass("hidden");
     $("#play_again").removeClass("hidden");
+    $("#game_over").removeClass("hidden");
   }
 
   function refreshGame() {
@@ -295,6 +296,7 @@ $(document).ready(function () {
 
   $(document).on("click", "#play_again", function (event) {
     //console.log("reset game button clicked");
+    $("#game_over").addClass("hidden");
     $("#play_again").addClass("hidden");
     $("#reset").removeClass("hidden");
     event.preventDefault();
