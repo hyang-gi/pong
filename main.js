@@ -310,6 +310,7 @@ $(document).ready(function () {
     setTimeout(function() {
       //console.log("delay before game starts");
       $("#start").addClass("hidden");
+      $("#play_again").addClass("hidden");
       $("#reset").removeClass("hidden");
       startGame();
     }, 400);
@@ -319,6 +320,7 @@ $(document).ready(function () {
     //console.log("reset game button clicked");
     setTimeout(function() {
       $("#reset").addClass("hidden");
+      $("#play_again").addClass("hidden");
       $("#start").removeClass("hidden");
       refreshGame();
     }, 200);
@@ -329,6 +331,7 @@ $(document).ready(function () {
     //console.log("reset game button clicked");
     $("#game_over_wrapper").addClass("hidden");
     $("#play_again").addClass("hidden");
+    $("#start").addClass("hidden");
     $("#reset").removeClass("hidden");
     event.preventDefault();
     refreshGame();
