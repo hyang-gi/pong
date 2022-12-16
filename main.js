@@ -285,7 +285,7 @@ $(document).ready(function () {
     //console.log("start game button clicked");
     event.preventDefault();
     setTimeout(function() {
-      console.log("Timeout");
+      //console.log("delay before game starts");
       $("#start").addClass("hidden");
       $("#reset").removeClass("hidden");
       startGame();
@@ -294,10 +294,12 @@ $(document).ready(function () {
 
   $(document).on("click", "#reset", function (event) {
     //console.log("reset game button clicked");
-    $("#reset").addClass("hidden");
-    $("#start").removeClass("hidden");
+    setTimeout(function() {
+      $("#reset").addClass("hidden");
+      $("#start").removeClass("hidden");
+      refreshGame();
+    }, 200);
     event.preventDefault();
-    refreshGame();
   });
 
   $(document).on("click", "#play_again", function (event) {
