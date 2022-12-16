@@ -18,6 +18,11 @@ const net = {
 let computer_score = user_score = initial_score = 2;
 let highscore = user_wins = computer_wins = 0;
 
+//assigning number of wins in local storage
+
+window.localStorage.setItem('Computer Wins', computer_wins);
+window.localStorage.setItem('User Wins', user_wins);
+
 // canvas and ball are fixed entities of the game, hence class is used only for Paddles
 
 class Paddle {
@@ -241,13 +246,15 @@ $(document).ready(function () {
     if (user_score === 0) {
       //console.log("computer wins!");
       $("#winner_declaration").text("Computer Wins!");
-      computer_wins += 1;
+      computer_wins = JSON.parse(window.localStorage.getItem('Computer Wins')) + 1;
+      window.localStorage.setItem('Computer Wins', computer_wins);
       gameOver();
       return;
     } else if (computer_score === 0) {
       //console.log("user wins!");
       $("#winner_declaration").text("User Wins!");
-      user_wins += 1;
+      user_wins = JSON.parse(window.localStorage.getItem('User Wins')) + 1;
+      window.localStorage.setItem('User Wins', user_wins);
       gameOver();
       return;
     }
@@ -262,7 +269,7 @@ $(document).ready(function () {
   }
 
   function gameOver() {
-    console.log("game over!");
+    //console.log("game over!");
     ballPause();
     paddle1.pause();
     paddle2.pauseKeydown();
