@@ -283,10 +283,13 @@ $(document).ready(function () {
 
   $(document).on("click", "#start", function (event) {
     //console.log("start game button clicked");
-    $("#start").addClass("hidden");
-    $("#reset").removeClass("hidden");
     event.preventDefault();
-    startGame();
+    setTimeout(function() {
+      console.log("Timeout");
+      $("#start").addClass("hidden");
+      $("#reset").removeClass("hidden");
+      startGame();
+    }, 400);
   });
 
   $(document).on("click", "#reset", function (event) {
