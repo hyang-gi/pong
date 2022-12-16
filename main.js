@@ -275,7 +275,6 @@ $(document).ready(function () {
     //console.log("refresh game function");
     ballReset();
     paddle1.reset();
-    paddle2.reset();
     activateKeyDown();
     displayScores();
   }
