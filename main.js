@@ -256,7 +256,6 @@ $(document).ready(function () {
 
   function startGame() {
     //console.log("start game function");
-    $("#welcome_wrapper").addClass("hidden");
     ball.ani = window.requestAnimationFrame(mover);
     paddle1.move();
     activateKeyDown();
@@ -284,6 +283,7 @@ $(document).ready(function () {
   $(document).on("click", "#start", function (event) {
     //console.log("start game button clicked");
     event.preventDefault();
+    $("#welcome_wrapper").addClass("hidden");
     setTimeout(function() {
       //console.log("delay before game starts");
       $("#start").addClass("hidden");
