@@ -256,6 +256,7 @@ $(document).ready(function () {
 
   function startGame() {
     //console.log("start game function");
+    $("#welcome_wrapper").addClass("hidden");
     ball.ani = window.requestAnimationFrame(mover);
     paddle1.move();
     activateKeyDown();
