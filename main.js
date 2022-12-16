@@ -253,7 +253,7 @@ $(document).ready(function () {
     } else if (computer_score === 0) {
       //console.log("user wins!");
       $("#winner_declaration").text("User Wins!");
-      user_wins = JSON.parse(window.localStorage.getItem('User Wins')) + 1;
+      user_wins = JSON.parse(window.localStorage.getItem('User Wins')) + 1; 
       window.localStorage.setItem('User Wins', user_wins);
       gameOver();
       return;
