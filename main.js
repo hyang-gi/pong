@@ -189,11 +189,21 @@ function ballPause() {
   cancelAnimationFrame(ball.ani);
 }
 
+function displayHighscore() {
+  let existing_highscore = JSON.parse(window.localStorage.getItem('Highscore'));
+  if (existing_highscore != undefined) {
+    $("#highscore").html(`Highscore: ${existing_highscore}`);
+  } else {
+    $("#highscore").html("Highscore: 0");
+  }
+}
+
 function displayScores() {
   //console.log("reset the score values");
   computer_score = user_score = initial_score;
   $("#computer_score").text(`${computer_score}`);
   $("#user_score").text(`${user_score}`);
+  displayHighscore();
 }
 
 function displayWins() {
@@ -217,14 +227,15 @@ function endScoreTracking() {
   let existing_highscore = JSON.parse(window.localStorage.getItem('Highscore'))
   if (existing_highscore != undefined) {
     if (existing_highscore > highscore) {
-      return;
+      $("#highscore").html(`Highscore: ${existing_highscore}`);
     } else {
       window.localStorage.setItem('Highscore', highscore);
+      $("#highscore").html(`Highscore: ${highscore}`);
     }
   } else {
     window.localStorage.setItem('Highscore', highscore);
+    $("#highscore").html(`Highscore: ${highscore}`);
   }
-
 }
 
 $(document).ready(function () {

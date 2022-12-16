@@ -126,3 +126,10 @@ button {
   height: 40px;
   cursor: pointer;
 }
+
+#highscore {
+  background-color: #832161;
+  color: #DBD3D8;
+  cursor: default; 
+  width: 300px;
+}
