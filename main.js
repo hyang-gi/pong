@@ -92,6 +92,10 @@ class Paddle {
       $(`#${this.id}`).css({ top: `${this.y}px` });
     }
   }
+
+  pauseKeydown() {
+    $(document).off('keydown');
+  }
 }
 
 /* ------------------
@@ -252,14 +256,14 @@ $(document).ready(function () {
     //console.log("start game function");
     ball.ani = window.requestAnimationFrame(mover);
     paddle1.move();
+    activateKeyDown();
   }
-
 
   function gameOver() {
     console.log("game over!");
     ballPause();
     paddle1.pause();
-    paddle2.pause();
+    paddle2.pauseKeydown();
     $("#reset").addClass("hidden");
     $("#play_again").removeClass("hidden");
   }
@@ -269,6 +273,7 @@ $(document).ready(function () {
     ballReset();
     paddle1.reset();
     paddle2.reset();
+    activateKeyDown();
     displayScores();
   }
 
@@ -297,8 +302,11 @@ $(document).ready(function () {
     startGame();
   });
 
-  $(document).keydown(function (e) {
-    //console.log("user controlled key event listener", e)
-    paddle2.handleKeydown(e.key);
-  });
+  function activateKeyDown() {
+    $(document).keydown(function (e) {
+      //console.log("user controlled key event listener", e)
+      paddle2.handleKeydown(e.key);
+    });
+  }
+
 });
