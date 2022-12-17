@@ -128,7 +128,7 @@ button {
   cursor: pointer;
 }
 
-#highscore {
+#highscore, #gamescore {
   background-color: #832161;
   color: #DBD3D8;
   cursor: default; 

@@ -15,14 +15,15 @@ const net = {
   y: 0,
 }
 
-let computer_score = user_score = initial_score = 10;
-let highscore, user_wins = computer_wins = 0;
-let startTime, endTime;
+let computer_score = user_score = initial_score = 2;
+let highscore, game_score = user_wins = computer_wins = 0;
+let start_time, end_time;
 
 //assigning number of wins in local storage
 
 window.localStorage.setItem('Computer Wins', computer_wins);
 window.localStorage.setItem('User Wins', user_wins);
+window.localStorage.setItem('Game Score', game_score);
 
 // canvas and ball are fixed entities of the game, hence class is used only for Paddles
 
@@ -213,17 +214,17 @@ function displayWins() {
 }
 
 function startScoreTracking() {
-  startTime = new Date();
-  //console.log(startTime);
+  start_time = new Date();
+  //console.log(start_time);
 };
 
 function endScoreTracking() {
-  endTime = new Date();
-  var timeDiff = endTime - startTime;
-  timeDiff /= 1000;
-  var seconds = Math.round(timeDiff);
-  //console.log({seconds});
-  highscore = seconds;
+  end_time = new Date();
+  var time_diff = (end_time - start_time)/1000;
+  game_score = Math.round(time_diff);
+  highscore = game_score;
+  window.localStorage.setItem('Game Score', game_score);
+  $("#gamescore").html(`Game Score: ${game_score}`);
   let existing_highscore = JSON.parse(window.localStorage.getItem('Highscore'))
   if (existing_highscore != undefined) {
     if (existing_highscore > highscore) {
