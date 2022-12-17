@@ -54,7 +54,7 @@ class Paddle {
 
   move = () => {
     //console.log("computer generated paddle mover function");
-    this.y += this.dy * 5;
+    this.y += this.dy * 6;
 
     //to move the paddle with new coordinates
     $(`#${this.id}`).css({ top: `${this.y}px` });
@@ -248,7 +248,7 @@ $(document).ready(function () {
   $("#net").css("left", `${net.x}px`);
   $("#net").css("top", `${net.y}px`);
 
-  const paddle1 = new Paddle(10, 160, 16, 200, getColour(), "paddle1");
+  const paddle1 = new Paddle(10, 160, 16, 160, getColour(), "paddle1");
   paddle1.show();
 
   const paddle2 = new Paddle(814, 160, 16, 120, getColour(), "paddle2");
