@@ -4,14 +4,14 @@ The above linked game has been developed for the first semester final assignment
 
 Below is a detailed description of the assignment criteria and the process followed.
 
-## Assignment
+## Assignment Brief
 
 - Have one computer-operated bat and one user-operated bat
 - If the user or the computer misses a ball they get one point deducted - from their total (start with 10 each)
 - First one to 0 loses
 - Show/keep track of the number of times the player won and the number of - times the computer won 
 
-## Additional Criteria
+### Additional Criteria
 
 * Does it work? Are there no glitches?
 * Structuring your solution properly: javascript files in the correct folder, css, images if needed. Is everything sourced properly in the HTML?
