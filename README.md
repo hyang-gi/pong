@@ -40,13 +40,13 @@ Below is a detailed description of the assignment criteria and the process follo
 - Along with initialising the paddle position in a method, pause() and reset() methods exist to aid the game play. 
 - Collision detection: Logic to detect collision has been set up in collisionDetection(), a delay mechanism is used to make sure multiple collisions on the same paddle-ball pair isn't detected. 
 - On collision, the ball bounces back with an increased speed to increase the intensity of the game
-- On missing the collision, the ball gets reset to the center and the speed decreases to basic
+- On missing the collision, the ball gets reset to the center and the speed decreases to basic level
 
 ### Scoring Criteria
 
 - To capture the two scoring mechanisms (Highscore and No. of Wins), local storage concepts are utilised: setItem() and getItem() methods are used for both. 
-- There's a slight variation between them, for Highscore, the code is designed to look for existing value and display it and if it doesn't exist a default value is set. 
-- For number of wins, each time the browser is reloaded, the previous values are lost. However, the number of wins can be seen by resetting the game and playing again. 
+- There's a slight variation between them, for Highscore, the code is designed to look for existing value and display it and if it doesn't exist, a default value is set. 
+- For number of wins, each time the browser is reloaded, the previous values are lost. However, the number of wins are retained and can be seen by resetting the game and playing again without page reload.
 
 
 
