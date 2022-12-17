@@ -325,6 +325,7 @@ $(document).ready(function () {
     //console.log("start game function");
     stopSound("game_over_audio");
     playSound("game_start_audio");
+    startScoreTracking();
     ball.ani = window.requestAnimationFrame(mover);
     paddle1.move();
     activateKeyDown();
@@ -353,7 +354,6 @@ $(document).ready(function () {
   $(document).on("click", "#start", function (event) {
     //console.log("start game button clicked");
     event.preventDefault();
-    startScoreTracking();
     $("#welcome_wrapper").addClass("hidden");
     setTimeout(function () {
       //console.log("delay before game starts");
@@ -361,7 +361,7 @@ $(document).ready(function () {
       $("#play_again").addClass("hidden");
       $("#reset").removeClass("hidden");
       startGame();
-    }, 400);
+    }, 200);
   });
 
   $(document).on("click", "#reset", function (event) {
