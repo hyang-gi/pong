@@ -110,7 +110,7 @@ class Paddle {
 
 function randomDirection() {
   //console.log("generates random direction from array list");
-  const direction = [-1, 1, 1, -1];
+  const direction = [-1, 1, 1];
   return direction[Math.floor(Math.random() * direction.length)];
 }
 
