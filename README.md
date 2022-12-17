@@ -25,5 +25,29 @@ Below is a detailed description of the assignment criteria and the process follo
 
 ## Process Description
 
+### Game Set Up
+
+- The page is initialised with all the default values, the positioning of the paddle and ball is done accordingly. 
+- The left paddle is controlled by the computer and the right is controlled by the user.
+- There are three active buttons (Start, Reset and Play Again) on the screen which get displayed according to various stages of the game.
+- Audio sounds have been provived for start game, collision, and game over points.
+
+### Ball & Paddles
+
+- To create the canvas and the ball, which are fixed entities of the game, divs in HTML are defined and corresponding CSS styling is done.
+- For the paddles, a class has been created which contains multiple methods.
+- For movement, the class has a move() method for computer generated padded and handleKeydown() method for user-controlled paddle. Once the paddle objects are created, respective paddles access the movement methods. This allows the users to interchange the left/computer-controlled and right/user-controlled paddles depending on their preference.
+- Along with initialising the paddle position in a method, pause() and reset() methods exist to aid the game play. 
+- Collision detection: Logic to detect collision has been set up in collisionDetection(), a delay mechanism is used to make sure multiple collisions on the same paddle-ball pair isn't detected. 
+- On collision, the ball bounces back with an increased speed to increase the intensity of the game
+- On missing the collision, the ball gets reset to the center and the speed decreases to basic
+
+### Scoring Criteria
+
+- To capture the two scoring mechanisms (Highscore and No. of Wins), local storage concepts are utilised: setItem() and getItem() methods are used for both. 
+- There's a slight variation between them, for Highscore, the code is designed to look for existing value and display it and if it doesn't exist a default value is set. 
+- For number of wins, each time the browser is reloaded, the previous values are lost. However, the number of wins can be seen by resetting the game and playing again. 
+
+
 
 
