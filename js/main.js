@@ -19,12 +19,6 @@ let computer_score = user_score = initial_score = 2;
 let highscore, game_score = user_wins = computer_wins = 0;
 let start_time, end_time;
 
-//assigning number of wins in local storage
-
-window.localStorage.setItem('Computer Wins', computer_wins);
-window.localStorage.setItem('User Wins', user_wins);
-window.localStorage.setItem('Game Score', game_score);
-
 // canvas and ball are fixed entities of the game, hence class is used only for Paddles
 
 class Paddle {
@@ -138,13 +132,12 @@ function stopSound(id) {
   audio.pause();
   audio.currentTime = 0;
 }
-/*throttle and debounce in js, throttle -> 
-basically it listens to the first call until the delay
-*/
+
+//throttle listens to the first call until the delay, helps in constant collision between paddle-ball
 
 const throttle = (func, delay) => {
   let toThrottle = false; //checks whether the duration has passed or not
-  return function (...args) { //second func returned by throttle
+  return function (...args) {
     if (!toThrottle) {
       toThrottle = true;
       func.apply(this, args);
@@ -169,9 +162,17 @@ function collisionDetection(paddle, ball) {
   return !(paddleLeftOfBall || paddleRightOfBall || paddleAboveBall || paddleBelowBall);
 }
 
-/* ------------------
-   reset/postioning functions
-   ------------------ */
+/* ---------------------------------------------
+   reset, postioning, scores, display functions
+   --------------------------------------------- */
+
+function setLocalStorage() {
+  //console.log("Local storage defaults are set in this method");
+
+  window.localStorage.setItem('Computer Wins', computer_wins);
+  window.localStorage.setItem('User Wins', user_wins);
+  window.localStorage.setItem('Game Score', game_score);
+}
 
 function setBallPosition() {
   //console.log("sets ball to the initial position");
@@ -190,21 +191,21 @@ function ballPause() {
   cancelAnimationFrame(ball.ani);
 }
 
-function displayHighscore() {
+function displayScores() {
+  //console.log("reset the score values");
+  computer_score = user_score = initial_score;
+  $("#computer_score").text(`${computer_score}`);
+  $("#user_score").text(`${user_score}`);
+
   let existing_highscore = JSON.parse(window.localStorage.getItem('Highscore'));
   if (existing_highscore != undefined) {
     $("#highscore").html(`Highscore: ${existing_highscore}`);
   } else {
     $("#highscore").html("Highscore: 0");
   }
-}
+  //let game_score = JSON.parse(window.localStorage.getItem('Game Score'))
+  $('#gamescore').html("Game Score: 0");
 
-function displayScores() {
-  //console.log("reset the score values");
-  computer_score = user_score = initial_score;
-  $("#computer_score").text(`${computer_score}`);
-  $("#user_score").text(`${user_score}`);
-  displayHighscore();
 }
 
 function displayWins() {
@@ -220,7 +221,7 @@ function startScoreTracking() {
 
 function endScoreTracking() {
   end_time = new Date();
-  var time_diff = (end_time - start_time)/1000;
+  let time_diff = (end_time - start_time) / 1000;
   game_score = Math.round(time_diff);
   highscore = game_score;
   window.localStorage.setItem('Game Score', game_score);
@@ -242,6 +243,7 @@ function endScoreTracking() {
 $(document).ready(function () {
   console.log("It works!");
 
+  setLocalStorage();
   setBallPosition();
   displayScores();
   displayWins();
