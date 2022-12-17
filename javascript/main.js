@@ -15,7 +15,7 @@ const net = {
   y: 0,
 }
 
-let computer_score = user_score = initial_score = 2;
+let computer_score = user_score = initial_score = 10;
 let highscore, user_wins = computer_wins = 0;
 let startTime, endTime;
 
