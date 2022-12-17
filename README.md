@@ -48,7 +48,7 @@ Below is a detailed description of the assignment criteria and the process follo
 - There's a slight variation between them, for Highscore, the code is designed to look for existing value and display it and if it doesn't exist, a 0 value is set. 
 - For number of wins, each time the browser is reloaded, the previous values are lost and reinitialised to 0. However, the number of wins are retained and can be seen by resetting the game and playing again without page reload.
 
-#### Note: Background images have been designed by Freepik.
+##### Note: Background images have been designed by Freepik.
 
 
 
