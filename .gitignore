@@ -33,10 +33,7 @@ creds.js
 # Mac/OSX
 .DS_Store
 
-Lesson_8_bouncing_ball/
-bounce_lesson_3/
-bens_tutorial/
- 
+01_folder/ 
  
 # Byte-compiled / optimized / DLL files
 __pycache__/
