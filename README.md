@@ -36,9 +36,9 @@ Below is a detailed description of the assignment criteria and the process follo
 
 - To create the canvas and the ball, which are fixed entities of the game, divs in HTML are defined and corresponding CSS styling is done.
 - For the paddles, a class has been created which contains multiple methods.
-- For movement, the class has a move() method for computer generated padded and handleKeydown() method for user-controlled paddle. Once the paddle objects are created, respective paddles access the movement methods. This allows the users to interchange the left/computer-controlled and right/user-controlled paddles depending on their preference.
+- For movement, the class has a move() method for computer generated paddle and handleKeydown() method for user-controlled paddle. Once the paddle objects are created, respective paddles access the movement methods. This allows the users to interchange the left/computer-controlled and right/user-controlled paddles depending on their preference.
 - Along with initialising the paddle position in a method, pause() and reset() methods exist to aid the game play. 
-- Collision detection: Logic to detect collision has been set up in collisionDetection(), a delay mechanism is used to make sure multiple collisions on the same paddle-ball pair isn't detected. 
+- Collision detection: Logic to detect collision has been set up in collisionDetection(), a delay mechanism is used to make sure multiple collisions on the same paddle-ball pair isn't detected which results in continuous collisions ont he same side. 
 - On collision, the ball bounces back with an increased speed to increase the intensity of the game
 - On missing the collision, the ball gets reset to the center and the speed decreases to basic level
 
@@ -47,7 +47,7 @@ Below is a detailed description of the assignment criteria and the process follo
 - To capture the two scoring mechanisms (Highscore and No. of Wins), local storage concepts are utilised: setItem() and getItem() methods are used for both. 
 - There's a slight variation between them, for Highscore, the code is designed to look for existing value and display it and if it doesn't exist, a 0 value is set. 
 - For number of wins, each time the browser is reloaded, the previous values are lost and reinitialised to 0. However, the number of wins are retained and can be seen by resetting the game and playing again without page reload.
-- Both highscore and game score are tracked on the screen and displayed using jQuery.
+- Both highscore and game score are tracked on the screen and displayed on top of the game canvas.
 
 ## What to expect in the future?
 
