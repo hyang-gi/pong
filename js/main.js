@@ -307,7 +307,9 @@ $(document).ready(function () {
     if (collision1 || collision2) {
       //console.log("collision between paddle-ball detected");
       playSound("collision_audio");
-      ball.speed += 1;
+      if(ball.speed < 8) {
+        ball.speed +=1;
+      }
       changeBallDirection();
     }
     // condition to check to end game and declare winner
