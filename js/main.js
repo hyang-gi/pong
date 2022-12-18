@@ -58,6 +58,8 @@ class Paddle {
       this.dy *= -1;
     }
 
+    //to detect the movement of the ball and move in that direction
+
     if (ball.y > 240 && ball.x < 280 && this.y < 480 - this.paddleHeight - 100) {
       this.dy = 1;
     }
@@ -143,7 +145,7 @@ function stopSound(id) {
 //throttle listens to the first call until the delay, helps in stopping constant collision between paddle-ball
 
 const throttle = (func, delay) => {
-  let toThrottle = false; //checks whether the duration has passed or not
+  let toThrottle = false; //flag to check whether the duration has passed or not
   return function (...args) {
     if (!toThrottle) {
       toThrottle = true;
