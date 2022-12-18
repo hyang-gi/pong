@@ -348,6 +348,7 @@ $(document).ready(function () {
 
   function refreshGame() {
     //console.log("refresh game function");
+    stopSound("game_start_audio");
     ballReset();
     paddle1.reset();
     activateKeyDown();
