@@ -57,6 +57,13 @@ class Paddle {
     if (this.y > 480 - this.paddleHeight || this.y < 0) {
       this.dy *= -1;
     }
+
+    if (ball.y > 240 && ball.x < 280 && this.y < 480 - this.paddleHeight - 100) {
+      this.dy = 1;
+    }
+    if (ball.y < 240 && ball.x < 280 && this.y > 100) {
+      this.dy = -1;
+    }
     this.ani = window.requestAnimationFrame(this.move);
   };
 
@@ -150,7 +157,7 @@ const throttle = (func, delay) => {
 
 const changeBallDirection = throttle(() => {
   ball.dx *= -1;
-}, 500 / ball.speed); //ball speed is dynamic, to decrease the delay as the speed increases
+}, 800 / ball.speed); //ball speed is dynamic, to decrease the delay as the speed increases
 
 function collisionDetection(paddle, ball) {
   //console.log("Checks for collision detection between the paddle and ball");
