@@ -37,6 +37,7 @@ Below is a detailed description of the assignment criteria and the process follo
 - To create the canvas and the ball, which are fixed entities of the game, divs in HTML are defined and corresponding CSS styling is done.
 - For the paddles, a class has been created which contains multiple methods.
 - For movement, the class has a move() method for computer generated paddle and handleKeydown() method for user-controlled paddle. Once the paddle objects are created, respective paddles access the movement methods. This allows the users to interchange the left/computer-controlled and right/user-controlled paddles depending on their preference.
+- The computer generated paddle is faster than the user's as its movement can be monotonous in nature. A logic to interpret the ball's position and move accordingly has been added to make sure that it appears more intuitive.
 - Along with initialising the paddle position in a method, pause() and reset() methods exist to aid the game play. 
 - Collision detection: Logic to detect collision has been set up in collisionDetection(), a delay mechanism is used to make sure multiple collisions on the same paddle-ball pair isn't detected which results in continuous collisions ont he same side. 
 - On collision, the ball bounces back with an increased speed to increase the intensity of the game
