@@ -5,7 +5,7 @@ const ball = {
   h: 40,
   dx: 1,
   dy: 1,
-  speed: 4,
+  speed: 5,
   ani: {},
   radius: 20,
 }
@@ -274,7 +274,7 @@ $(document).ready(function () {
       }
       ball.x = 400;
       ball.y = randomHelper(48, 360);
-      ball.speed = 4;
+      ball.speed = 5;
       ball.dx = randomDirection();
     }
 
@@ -286,7 +286,7 @@ $(document).ready(function () {
       }
       ball.x = 400;
       ball.y = randomHelper(48, 360);
-      ball.speed = 4;
+      ball.speed = 5;
       ball.dx = randomDirection();
     }
 
