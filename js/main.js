@@ -361,7 +361,6 @@ $(document).ready(function () {
     playSound("game_reset_audio");
     ballReset();
     paddle1.reset();
-    activateKeyDown();
     displayScores();
   }
 
