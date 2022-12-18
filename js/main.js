@@ -183,8 +183,10 @@ function setLocalStorage() {
 
 function setBallPosition() {
   //console.log("sets ball to the initial position");
-  $("#ball").css("left", `400px`);
-  $("#ball").css("top", `200px`);
+  ball.x = 400;
+  ball.y = 200
+  $("#ball").css({ left: `${ball.x}px` });
+  $("#ball").css({ top: `${ball.y}px` });
 }
 
 function ballReset() {
@@ -380,10 +382,10 @@ $(document).ready(function () {
   $(document).on("click", "#reset", function (event) {
     //console.log("reset game button clicked");
     event.preventDefault();
-      $("#reset").addClass("hidden");
-      $("#play_again").addClass("hidden");
-      $("#start").removeClass("hidden");
-      refreshGame();
+    $("#reset").addClass("hidden");
+    $("#play_again").addClass("hidden");
+    $("#start").removeClass("hidden");
+    refreshGame();
   });
 
   $(document).on("click", "#play_again", function (event) {
