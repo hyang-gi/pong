@@ -140,7 +140,7 @@ function stopSound(id) {
   audio.currentTime = 0;
 }
 
-//throttle listens to the first call until the delay, helps in constant collision between paddle-ball
+//throttle listens to the first call until the delay, helps in stopping constant collision between paddle-ball
 
 const throttle = (func, delay) => {
   let toThrottle = false; //checks whether the duration has passed or not
@@ -307,8 +307,8 @@ $(document).ready(function () {
     if (collision1 || collision2) {
       //console.log("collision between paddle-ball detected");
       playSound("collision_audio");
-      if(ball.speed < 8) {
-        ball.speed +=1;
+      if (ball.speed < 8) {
+        ball.speed += 1;
       }
       changeBallDirection();
     }
@@ -380,30 +380,28 @@ $(document).ready(function () {
 
   $(document).on("click", "#reset", function (event) {
     //console.log("reset game button clicked");
-    setTimeout(function () {
+    event.preventDefault();
       $("#reset").addClass("hidden");
       $("#play_again").addClass("hidden");
       $("#start").removeClass("hidden");
       refreshGame();
-    }, 200);
-    event.preventDefault();
   });
 
   $(document).on("click", "#play_again", function (event) {
     //console.log("reset game button clicked");
+    event.preventDefault();
     $("#game_over_wrapper").addClass("hidden");
     $("#play_again").addClass("hidden");
     $("#start").addClass("hidden");
     $("#reset").removeClass("hidden");
-    event.preventDefault();
     refreshGame();
     startGame();
   });
 
   function activateKeyDown() {
-    $(document).keydown(function (e) {
+    $(document).keydown(function (event) {
       //console.log("user controlled key event listener", e)
-      paddle2.handleKeydown(e.key);
+      paddle2.handleKeydown(event.key);
     });
   }
 
